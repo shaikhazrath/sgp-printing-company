@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-bA8VNpGWVB5vjQQgqrq+COaDIJGSXRzi9CPjrTSg9RLc9SvW1Dnz/97kff5fcCynFkueRm7/d9wtMKFenJbtA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Corinthia:wght@700&family=Open+Sans:wght@500&display=swap" rel="stylesheet">
+</head>
+<title>Sai Ganapathy Printers</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-dark" style="background-color: #00355F; color: #fff;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"
+        style="font-family: 'Open Sans';   font-size: 20px;  letter-spacing: 2px;  ">Sai
+        Ganapathy Printers</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+        aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+        aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header" style="background-color: #00355F; color: #fff;">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"
+            style="font-family: 'Corinthia' , cursive;   font-weight: bolder; font-size: 20px; word-spacing: 4.5%; letter-spacing: 4px;">
+            Welcome</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body"
+          style="background-color: #00355F; color: #fff; font-family: 'Courier pro'; font-weight: bolder; font-size: 20px; word-spacing: 4.5%; letter-spacing: 4px;">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#products">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </nav>
+<div>
+ <div class="bannerImagess">
+    <div id="banner-slider" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'images/bannerimage1.jpg' %}" alt="Banner 1">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/bannerimage2.jpg' %}" alt="Banner 2">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/bannerimage3.png' %}" alt="Banner 2">
+        </div>
+        <!-- Add more carousel items for additional banner images -->
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#banner-slider" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#banner-slider" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+<div id="products">
+  <div class="headingSection">
+    <h2 class="heading1" style="font-family: 'Corinthia' ; font-size: 40px; ">All Types Of Printing Available Here</h2>
+    <h3 class="heading2" style=" ">Best Quality ,Best Prize,fully customizable</h3>
+  </div>
+
+  <div class="cards">
+    {% for product in products %}
+
+      <div class="card" onclick="handleCardClick('{{ product.id }}')">
+        <img src="{{ product.img.url }}" alt="Card Image">
+        <div class="card-content">
+          <h2 class="card-title">{{ product.title }}</h2>
+
+          <a href="#" class="view-details-button">View Details</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+ 
+</div>
+
+<hr>
+  <div id="about" class="About">
+    <div class="headingSection">
+      <h2 class="heading1" style="font-family: 'Corinthia' ; font-size: 40px;">About Us</h2>
+    </div>
+
+    <div class="aboutTextContainer1">
+      <div class="aboutTextContainer2">
+        <p>Sai Ganapathi Printers, your one-stop destination for all your printing needs. We take immense pride in
+          offering a wide range of high-quality printing services that serve individuals, businesses, and organizations
+          alike. With 10 years of expertise in the industry, we have earned a reputation for excellence and reliability.
+        </p>
+      </div>
+    </div>
+
+    <div class="imageGallery">
+      <img src="{% static 'images/about1.jpg' %}" alt="Image 1">
+      <img src="{% static 'images/about2.jpg' %}" alt="Image 2">
+      <img src="{% static 'images/about3.jpg' %}" alt="Image 3">
+      <!-- Add more images here -->
+    </div>
+  </div>
+
+<hr>
+
+
+  <div id="contact" class="contact">
+    <div class="headingSection">
+      <h2 class="heading1" style="font-family: 'Corinthia' ; font-size: 40px;">Contact Us</h2>
+    </div>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3796.221675153795!2d83.42290257580056!3d17.92181178305937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a39581b73ffffff%3A0xd04b9046faa4565f!2sAnil%20Neerukonda%20Institute%20of%20Techonology%20and%20Sciences%20(ANITS)!5e0!3m2!1sen!2sin!4v1690725495854!5m2!1sen!2sin"
+      width="80%" height="250px" style="border:0;" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="contactDetails">
+      <a href="tel:+918520800787" style="color:#00355F">
+        <iconify-icon icon="ic:baseline-phone" width="30" height="30" style="color:#00355F"></iconify-icon> +91 8520800787
+      </a>
+
+      <a href="mailto:hazrath543@gmail.com" style="color:#00355F">
+        <iconify-icon icon="ic:baseline-email" width="30" height="30" style="color:#00355F" ></iconify-icon> hazrath543@gmail.com
+      </a>
+    </div>
+  </div>
+</div>
+ 
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#banner-slider").carousel({
+        interval: 2000
+      });
+    });
+    function handleCardClick(id) {
+      window.location.href = '/productdetails/' + id; 
+    }
+  </script>
+</body>
+
+</html>

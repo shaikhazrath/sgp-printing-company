@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/productDetails.css' %}">
+  <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+
+
+    <a href="/" style="color: black ;">
+        <iconify-icon icon="ep:back" width="30" height="30"></iconify-icon>
+    </a>
+
+    <div class="card-wrapper">
+        <div class="card">
+            <!-- card left -->
+            <div class="product-imgs">
+                <div class="img-display">
+                    <div class="img-showcase">
+                        <img src="{{product.img.url}}" alt="shoe image">
+                        <img src="{{product.ima.url}}" alt="shoe image">
+                        <img src="{{product.ime.url}}" alt="shoe image">
+                        <img src="{{product.ig.url}}" alt="shoe image">
+                        <img src="{{product.im.url}}" alt="shoe image">
+
+                    </div>
+                </div>
+                <div class="img-select">
+                    <div class="img-item">
+                        <a href="#" data-id="1">
+                            <img src="{{product.img.url}}" alt="shoe image">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id="2">
+                            <img src="{{product.ima.url}}" alt="shoe image">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id="3">
+                            <img src="{{product.ime.url}}" alt="shoe image">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id="4">
+                            <img src="{{product.ig.url}}" alt="shoe image">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id="5">
+                            <img src="{{product.im.url}}" alt="shoe image">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- card right -->
+            <div class="product-content">
+                <h2 class="product-title">{{product.title}}</h2>
+                <div id="product-id" data-product-id="{{ product.id }}"></div>
+                <div id="product-img" data-product-img="{{ product.img.url }}"></div>
+
+                <div class="product-detail">
+                    <h2>About this item:</h2>
+                    <p>
+                       {{product.description}}
+                    </p>
+                </div>
+                <div>
+                    <button class="whatsapp-button" onclick="sendMessage()">
+                        <span class="whatsapp-icon">
+                            <!-- WhatsApp icon from Iconify -->
+                            <span class="iconify" data-icon="ion-logo-whatsapp" data-inline="false"></span>
+                        </span>
+                        Order by WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+
+      <script>
+        const imgs = document.querySelectorAll('.img-select a');
+const imgBtns = [...imgs];
+let imgId = 1;
+
+imgBtns.forEach((imgItem) => {
+    imgItem.addEventListener('click', (event) => {
+        event.preventDefault();
+        imgId = imgItem.dataset.id;
+        slideImage();
+    });
+});
+
+function slideImage(){
+    const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+    document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+}
+
+window.addEventListener('resize', slideImage);
+
+
+
+function sendMessage() {
+    // Replace '8520800787' with the recipient's phone number
+    const phoneNumber = '+91 8520800787';
+
+    // Fetch the product title from the HTML
+    const productTitleElement = document.querySelector('.product-title');
+    const productTitle = productTitleElement.textContent || productTitleElement.innerText;
+    const productElement = document.getElementById('product-id');
+
+  // Get the 'data-product-id' attribute value
+  const productId = productElement.dataset.productId;
+
+  // Get the element with the 'product-img' ID
+  const productImgElement = document.getElementById('product-img');
+
+  // Get the 'data-product-img' attribute value (the image URL)
+  const productImgUrl = productImgElement.dataset.productImg;
+
+    // Create the message
+    const message = `Hi! I'd like to talk about the product: title:${productTitle}  id:${productId}  img:${productImgUrl} `;
+
+    // Encode the message and phone number for use in the URL
+    const encodedMessage = encodeURIComponent(message);
+    const encodedPhoneNumber = encodeURIComponent(phoneNumber);
+
+    // Create the WhatsApp API URL
+    const whatsappUrl = `https://wa.me/${encodedPhoneNumber}?text=${encodedMessage}`;
+
+    // Open WhatsApp with the pre-filled message
+    window.open(whatsappUrl, '_blank');
+}
+      </script>
+</body>
+</html>
